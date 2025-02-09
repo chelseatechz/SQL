@@ -24,4 +24,33 @@ duration_ms integer NOT NULL,
 time_signature integer NOT NULL 
 )
 
-#Then I inserted the Spotify Data .csv into the table.
+#Then I inserted the Spotify Data .csv into the table. 
+
+- Which artist has the most songs in the top 50?
+SELECT artist_name, COUNT(*) AS song_count
+FROM spotify_top50
+GROUP BY artist_name
+ORDER BY song_count DESC
+LIMIT 1;
+
+- What is the average popularity score of all songs?
+SELECT AVG(popularity) AS avg_popularity
+FROM spotify_top50;
+
+- Which song has the highest danceability?
+SELECT track_name, artist_name, danceability
+FROM spotify_top50
+ORDER BY danceability DESC
+LIMIT 1;
+
+- Which song has the longest duration?
+SELECT track_name, artist_name, duration_ms
+FROM spotify_top50
+ORDER BY duration_ms DESC
+LIMIT 1;
+
+- What is the average energy level for songs by Olivia Rodrigo?
+SELECT AVG(energy) AS avg_energy
+FROM spotify_top50
+WHERE artist_name = 'Olivia Rodrigo';
+
